@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web ide bisnis Han.net</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .gradient-text {
+            background: linear-gradient(to bottom, #ffffff, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#06b6d4',
+                        'primary-light': '#22d3ee',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="iconify text-cyan-400 text-2xl" data-icon="carbon:idea"></span>
+                <span class="font-semibold text-lg">Han.net</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#ideas" class="text-sm text-slate-400 hover:text-white transition-colors">Ide Bisnis</a>
+                <a href="#categories" class="text-sm text-slate-400 hover:text-white transition-colors">Kategori</a>
+                <a href="#about" class="text-sm text-slate-400 hover:text-white transition-colors">Tentang</a>
+            </div>
+            <button onclick="openCart()" class="relative p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <span class="iconify text-xl" data-icon="carbon:shopping-cart"></span>
+                <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-cyan-500 text-xs rounded-full flex items-center justify-center hidden">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-5xl text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                <span class="text-xs font-medium text-slate-400">50+ Ide Bisnis Tersedia</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-bold tracking-tight leading-tight text-center gradient-text animate-fadeSlide">
+  Temukan Ide Bisnis<br>Impianmu
+</h1>
+
+<style>
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(40px); }
+  25% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+
+.animate-fadeSlide {
+  animation: fadeSlide 4s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #59c2d4, #f6f6f7, #69b6e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto mb-10">
+                Jelajahi koleksi ide bisnis yang sudah teruji dan siap dikelola. Beli ide, dapatkan panduan lengkap, dan mulai bisnismu sekarang.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#ideas" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all shadow-lg shadow-cyan-500/25">
+                    Jelajahi Ide Bisnis
+                </a>
+                <a href="#about" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all">
+                    Pelajari Lebih Lanjut
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 px-6 border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-medium text-white mb-2">50+</div>
+                <div class="text-sm text-slate-400">Ide Bisnis</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-medium text-white mb-2">200+</div>
+                <div class="text-sm text-slate-400">Pembeli Puas</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-medium text-white mb-2">95%</div>
+                <div class="text-sm text-slate-400">Success Rate</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-medium text-white mb-2">24/7</div>
+                <div class="text-sm text-slate-400">Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-medium tracking-tight mb-4">Kategori Populer</h2>
+                <p class="text-slate-400">Filter berdasarkan kategori yang kamu minati</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="filterIdeas('all')" class="filter-btn active px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="all">
+                    Semua
+                </button>
+                <button onclick="filterIdeas('food')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="food">
+                    🍔 Food & Beverage
+                </button>
+                <button onclick="filterIdeas('tech')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="tech">
+                    💻 Teknologi
+                </button>
+                <button onclick="filterIdeas('creative')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="creative">
+                    🎨 Kreatif
+                </button>
+                <button onclick="filterIdeas('service')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="service">
+                    🔧 Jasa
+                </button>
+                <button onclick="filterIdeas('retail')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="retail">
+                    🛍️ Retail
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideas Grid Section -->
+    <section id="ideas" class="py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl font-medium tracking-tight mb-2">Ide Bisnis Unggulan</h2>
+                    <p class="text-slate-400">Pilih ide bisnis yang sesuai dengan passionmu</p>
+                </div>
+                <div class="hidden md:flex items-center gap-2 text-sm text-slate-400">
+                    <span class="iconify" data-icon="carbon:sort-ascending"></span>
+                    <span>Urutkan: Terpopuler</span>
+                </div>
+            </div>
+            
+            <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Ideas will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-medium tracking-tight mb-6">Mengapa Memilih Han.net?</h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-cyan-400 text-xl" data-icon="carbon:checkmark-filled"></span>
+                            </div>
+                            <div>
+                                <h3 class="font-medium mb-1">Ide Teruji</h3>
+                                <p class="text-sm text-slate-400">Semua ide bisnis sudah melalui proses validasi dan penelitian pasar.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-purple-400 text-xl" data-icon="carbon:document"></span>
+                            </div>
+                            <div>
+                                <h3 class="font-medium mb-1">Panduan Lengkap</h3>
+                                <p class="text-sm text-slate-400">Setiap ide dilengkapi dengan business plan dan strategi marketing.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-green-400 text-xl" data-icon="carbon:chat"></span>
+                            </div>
+                            <div>
+                                <h3 class="font-medium mb-1">Konsultasi Gratis</h3>
+                                <p class="text-sm text-slate-400">Dapatkan sesi konsultasi 1-on-1 dengan mentor bisnis kami.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="pu.jpeg" alt="About" class="rounded-2xl shadow-2xl">
+                    <div class="absolute -bottom-6 -left-6 bg-slate-800 border border-white/10 rounded-xl p-4 backdrop-blur-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center">
+                                <span class="iconify text-slate-900" data-icon="carbon:rocket"></span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium">Siap Memulai?</div>
+                                <div class="text-xs text-slate-400">Dalam 30 hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="iconify text-cyan-400 text-xl" data-icon="carbon:idea"></span>
+                    <span class="font-semibold">Han.net</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-slate-400">
+                    <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition-colors">Kontak</a>
+                </div>
+                <div class="text-sm text-slate-400">© 2025 Han.net All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCart()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-slate-900 border-l border-white/10 p-6 overflow-y-auto">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-medium">Keranjang Belanja</h3>
+                <button onclick="closeCart()" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <span class="iconify text-xl" data-icon="carbon:close"></span>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="space-y-4 mb-8">
+                <!-- Cart items will be rendered here -->
+            </div>
+            
+            <div id="cart-empty" class="text-center py-12">
+                <span class="iconify text-6xl text-slate-600 mb-4" data-icon="carbon:shopping-cart"></span>
+                <p class="text-slate-400">Keranjang masih kosong</p>
+            </div>
+            
+            <div id="cart-summary" class="border-t border-white/10 pt-6 hidden">
+                <div class="flex justify-between mb-4">
+                    <span class="text-slate-400">Subtotal</span>
+                    <span id="cart-subtotal" class="font-medium">Rp 0</span>
+                </div>
+                <div class="flex justify-between mb-6">
+                    <span class="text-slate-400">Total</span>
+                    <span id="cart-total" class="text-xl font-medium text-cyan-400">Rp 0</span>
+                </div>
+                <button onclick="checkout()" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all">
+                    Checkout Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
+        <div class="absolute inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-slate-900 border border-white/10 rounded-2xl p-6 overflow-y-auto max-h-full">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-medium">Checkout</h3>
+                <button onclick="closeCheckoutModal()" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <span class="iconify text-xl" data-icon="carbon:close"></span>
+                </button>
+            </div>
+            
+            <form id="checkout-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-400 mb-2">Nama Lengkap</label>
+                    <input type="text" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="Masukkan nama lengkap">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="email@contoh.com">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-2">No. WhatsApp</label>
+                    <input type="tel" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="08xxxxxxxxxx">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-2">Metode Pembayaran</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-cyan-500 transition-colors">
+                            <input type="radio" name="payment" value="transfer" checked class="accent-cyan-500">
+                            <span class="text-sm">Transfer Bank</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-cyan-500 transition-colors">
+                            <input type="radio" name="payment" value="ewallet" class="accent-cyan-500">
+                            <span class="text-sm">E-Wallet</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/10 pt-4 mt-4">
+                    <div class="flex justify-between mb-4">
+                        <span class="text-slate-400">Total Pembayaran</span>
+                        <span id="checkout-total" class="text-xl font-medium text-cyan-400">Rp 0</span>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all">
+                        Bayar Sekarang
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="absolute inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md bg-slate-900 border border-white/10 rounded-2xl p-8 text-center">
+            <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="iconify text-4xl text-green-400" data-icon="carbon:checkmark-filled"></span>
+            </div>
+            <h3 class="text-2xl font-medium mb-2">Pembayaran Berhasil!</h3>
+            <p class="text-slate-400 mb-6">Terima kasih atas pembelian Anda. Kami akan mengirimkan detail ide bisnis melalui email dalam 1x24 jam.</p>
+            <button onclick="closeSuccessModal()" class="px-8 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Business Ideas Data
+        const businessIdeas = [
+            {
+                id: 1,
+                title: "Kedai Kopi Specialty",
+                category: "food",
+                price: 750000,
+                image: "p.jpeg",
+                description: "Konsep kedai kopi dengan biji kopi lokal premium dan teknik brewing manual.",
+                tags: ["F&B", "Trend", "Local"]
+            },
+            {
+                id: 2,
+                title: "Aplikasi Laundry On-Demand",
+                category: "tech",
+                price: 2500000,
+                image: "lu.jpeg",
+                description: "Platform digital untuk layanan laundry dengan pickup & delivery.",
+                tags: ["Tech", "Startup", "App"]
+            },
+            {
+                id: 3,
+                title: "Studio Fotografi Pre-Wedding",
+                category: "creative",
+                price: 1250000,
+                image: "s.jpeg",
+                description: "Paket layanan fotografi pre-wedding dengan konsep unik dan lokasi outdoor.",
+                tags: ["Creative", "Wedding", "Photo"]
+            },
+            {
+                id: 4,
+                title: "Jasa Desain Interior Online",
+                category: "service",
+                price: 950000,
+                image: "in.jpeg",
+                description: "Layanan konsultasi dan desain interior secara online dengan 3D rendering.",
+                tags: ["Service", "Design", "Home"]
+            },
+            {
+                id: 5,
+                title: "Lapak Store",
+                category: "retail",
+                price: 2500000,
+                image: "pak.jpeg",
+                description: "Blueprint bisnis online dengan supplier terpercaya dan strategi marketing.",
+                tags: ["Retail", "marketplace", "Online"]
+            },
+            {
+                id: 6,
+                title: "Cloud Kitchen Healthy Food",
+                category: "food",
+                price: 1500000,
+                image: "l.jpeg",
+                description: "Konsep ghost kitchen khusus makanan sehat dengan delivery-only model.",
+                tags: ["F&B", "Health", "Delivery"]
+            },
+            
+            
+        ];
+
+        // Cart State
+        let cart = [];
+
+        // Format Currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Render Ideas
+        function renderIdeas(ideas) {
+            const grid = document.getElementById('ideas-grid');
+            grid.innerHTML = ideas.map(idea => `
+                <div class="bg-slate-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 transition-all group" data-category="${idea.category}">
+                    <div class="relative overflow-hidden">
+                        <img src="${idea.image}" alt="${idea.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            ${idea.tags.slice(0, 2).map(tag => `
+                                <span class="px-2 py-1 bg-black/50 backdrop-blur-sm text-xs rounded-full">${tag}</span>
+                            `).join('')}
+                        </div>
+                        <div class="absolute top-3 right-3 px-2 py-1 bg-cyan-500 text-slate-900 text-xs font-medium rounded-full">
+                            ${idea.category}
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-medium text-lg mb-2">${idea.title}</h3>
+                        <p class="text-sm text-slate-400 mb-4 line-clamp-2">${idea.description}</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1">
+                                <span class="iconify text-yellow-400" data-icon="carbon:star-filled"></span>
+                                <span class="text-sm">${idea.rating}</span>
+                                <span class="text-slate-600 text-sm">• ${idea.sold} terjual</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-medium text-cyan-400">${formatCurrency(idea.price)}</span>
+                            <button onclick="addToCart(${idea.id})" class="px-4 py-2 bg-cyan-500 text-slate-900 text-sm font-medium rounded-lg hover:bg-cyan-400 transition-colors flex items-center gap-2">
+                                <span class="iconify" data-icon="carbon:shopping-cart-plus"></span>
+                                Tambah
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Ideas
+        function filterIdeas(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-slate-900');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('bg-cyan-500', 'text-slate-900');
+                }
+            });
+
+            const filtered = category === 'all' 
+                ? businessIdeas 
+                : businessIdeas.filter(idea => idea.category === category);
+            renderIdeas(filtered);
+        }
+
+        // Add to Cart
+        function addToCart(id) {
+            const idea = businessIdeas.find(i => i.id === id);
+            const existing = cart.find(item => item.id === id);
+            
+            if (existing) {
+                alert('Ide bisnis ini sudah ada di keranjang!');
+                return;
+            }
+            
+            cart.push({ ...idea, quantity: 1 });
+            updateCartUI();
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 flex items-center gap-2';
+            notification.innerHTML = `
+                <span class="iconify" data-icon="carbon:checkmark-filled"></span>
+                Ditambahkan ke keranjang
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+
+        // Remove from Cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartSummary = document.getElementById('cart-summary');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartTotal = document.getElementById('cart-total');
+
+            if (cart.length > 0) {
+                cartCount.textContent = cart.length;
+                cartCount.classList.remove('hidden');
+                cartEmpty.classList.add('hidden');
+                cartSummary.classList.remove('hidden');
+                
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                cartSubtotal.textContent = formatCurrency(total);
+                cartTotal.textContent = formatCurrency(total);
+                
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 p-4 bg-white/5 rounded-xl">
+                        <img src="${item.image}" alt="${item.title}" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h4 class="font-medium mb-1">${item.title}</h4>
+                            <p class="text-sm text-slate-400 mb-2">${item.category}</p>
+                            <span class="text-cyan-400 font-medium">${formatCurrency(item.price)}</span>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="p-2 hover:bg-white/10 rounded-lg h-fit transition-colors text-slate-400 hover:text-red-400">
+                            <span class="iconify" data-icon="carbon:trash-can"></span>
+                        </button>
+                    </div>
+                `).join('');
+            } else {
+                cartCount.classList.add('hidden');
+                cartEmpty.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+                cartItems.innerHTML = '';
+            }
+        }
+
+        // Open/Close Cart
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('checkout-total').textContent = formatCurrency(total);
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            closeCart();
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Form Submit
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            closeCheckoutModal();
+            document.getElementById('success-modal').classList.remove('hidden');
+            cart = [];
+            updateCartUI();
+        });
+
+        // Initialize
+        renderIdeas(businessIdeas);
+    </script>
+</body>
+</html>
