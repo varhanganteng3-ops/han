@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Script Iconify -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <style>
         * {
@@ -20,18 +21,48 @@
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
         
         .gradient-text {
-            background: linear-gradient(to bottom, #ffffff, #ffffff, #94a3b8);
+            background: linear-gradient(to bottom, #ffffff, #ffffff, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        /* Animasi untuk Background Blob */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
         }
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
+        
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Animasi Teks Fade Slide */
+        @keyframes fadeSlide {
+          0% { opacity: 0; transform: translateY(40px); }
+          25% { opacity: 1; transform: translateY(0); }
+          75% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-30px); }
+        }
+        .animate-fadeSlide {
+          animation: fadeSlide 4s ease-in-out infinite;
+        }
+        
+        /* Gradient Text Update */
+        .hero-gradient-text {
+          background: linear-gradient(to right, #e2e8f0, #f8fafc, #ffffff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
     </style>
     <script>
@@ -48,6 +79,24 @@
     </script>
 </head>
 <body class="bg-slate-950 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="font-semibold text-lg">Han.net</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#ideas" class="text-sm text-slate-400 hover:text-white transition-colors">Ide Bisnis</a>
+                <a href="#categories" class="text-sm text-slate-400 hover:text-white transition-colors">Kategori</a>
+                <a href="#about" class="text-sm text-slate-400 hover:text-white transition-colors">Tentang</a>
+            </div>
+            <button onclick="openCart()" class="relative p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <span class="iconify text-xl" data-icon="carbon:shopping-cart"></span>
+                <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-white text-slate-900 text-xs font-bold rounded-full flex items-center justify-center hidden">0</span>
+            </button>
+        </div>
+    </nav>
+
     <!-- Hero Section (UPDATED: Putih) -->
     <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
         
@@ -68,54 +117,31 @@
             
             <!-- Radial Gradient Vignette -->
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0f172a_70%)]"></div>
+        </div>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-        <!-- Background Glow -->
-        <div class="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        
         <div class="max-w-5xl text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8 backdrop-blur-sm">
                 <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
-                <span class="text-xs font-medium text-slate-400">50+ Ide Bisnis Tersedia</span>
+                <span class="text-xs font-medium text-slate-300">50+ Ide Bisnis Tersedia</span>
             </div>
             
-            <h1 class="text-4xl md:text-7xl font-bold tracking-tight leading-tight text-center gradient-text animate-fadeSlide">
-  Temukan Ide Bisnis<br>Impianmu
-</h1>
-
-<style>
-@keyframes fadeSlide {
-  0% { opacity: 0; transform: translateY(40px); }
-  25% { opacity: 1; transform: translateY(0); }
-  75% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-30px); }
-}
-
-.animate-fadeSlide {
-  animation: fadeSlide 4s ease-in-out infinite;
-}
-
-.gradient-text {
-  background: linear-gradient(to right, #59c2d4, #f6f6f7, #69b6e9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-</style>
+            <h1 class="text-4xl md:text-7xl font-bold tracking-tight leading-tight text-center hero-gradient-text animate-fadeSlide mb-6">
+                Temukan Ide Bisnis<br>Impianmu
             </h1>
+            
             <p class="text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto mb-10">
                 Jelajahi koleksi ide bisnis yang sudah teruji dan siap dikelola. Beli ide, dapatkan panduan lengkap, dan mulai bisnismu sekarang.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#ideas" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all shadow-lg shadow-cyan-500/25">
+                <!-- Tombol Diubah Jadi Putih -->
+                <a href="#ideas" class="px-8 py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-slate-200 transition-all shadow-lg shadow-white/20">
                     Jelajahi Ide Bisnis
                 </a>
-                <a href="#about" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all">
+                <a href="#about" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all backdrop-blur-sm text-white">
                     Pelajari Lebih Lanjut
                 </a>
             </div>
@@ -123,7 +149,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-12 px-6 border-y border-white/5">
+    <section class="py-12 px-6 border-y border-white/5 relative z-10 bg-slate-950/50 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="text-center">
                 <div class="text-3xl md:text-4xl font-medium text-white mb-2">50+</div>
@@ -145,7 +171,7 @@
     </section>
 
     <!-- Categories Section -->
-    <section id="categories" class="py-24 px-6">
+    <section id="categories" class="py-24 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-medium tracking-tight mb-4">Kategori Populer</h2>
@@ -153,22 +179,22 @@
             </div>
             
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="filterIdeas('all')" class="filter-btn active px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="all">
+                <button onclick="filterIdeas('all')" class="filter-btn active px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="all">
                     Semua
                 </button>
-                <button onclick="filterIdeas('food')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="food">
+                <button onclick="filterIdeas('food')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="food">
                     🍔 Food & Beverage
                 </button>
-                <button onclick="filterIdeas('tech')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="tech">
+                <button onclick="filterIdeas('tech')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="tech">
                     💻 Teknologi
                 </button>
-                <button onclick="filterIdeas('creative')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="creative">
+                <button onclick="filterIdeas('creative')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="creative">
                     🎨 Kreatif
                 </button>
-                <button onclick="filterIdeas('service')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="service">
+                <button onclick="filterIdeas('service')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="service">
                     🔧 Jasa
                 </button>
-                <button onclick="filterIdeas('retail')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-slate-900 transition-all text-sm" data-category="retail">
+                <button onclick="filterIdeas('retail')" class="filter-btn px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-slate-900 transition-all text-sm" data-category="retail">
                     🛍️ Retail
                 </button>
             </div>
@@ -176,7 +202,7 @@
     </section>
 
     <!-- Ideas Grid Section -->
-    <section id="ideas" class="py-12 px-6">
+    <section id="ideas" class="py-12 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-12">
                 <div>
@@ -196,15 +222,15 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 px-6 bg-slate-900/50">
+    <section id="about" class="py-24 px-6 bg-slate-900/50 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
                     <h2 class="text-3xl font-medium tracking-tight mb-6">Mengapa Memilih Han.net?</h2>
                     <div class="space-y-6">
                         <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
-                                <span class="iconify text-cyan-400 text-xl" data-icon="carbon:checkmark-filled"></span>
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-white text-xl" data-icon="carbon:checkmark-filled"></span>
                             </div>
                             <div>
                                 <h3 class="font-medium mb-1">Ide Teruji</h3>
@@ -212,8 +238,8 @@
                             </div>
                         </div>
                         <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                <span class="iconify text-purple-400 text-xl" data-icon="carbon:document"></span>
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-white text-xl" data-icon="carbon:document"></span>
                             </div>
                             <div>
                                 <h3 class="font-medium mb-1">Panduan Lengkap</h3>
@@ -221,8 +247,8 @@
                             </div>
                         </div>
                         <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                                <span class="iconify text-green-400 text-xl" data-icon="carbon:chat"></span>
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-white text-xl" data-icon="carbon:chat"></span>
                             </div>
                             <div>
                                 <h3 class="font-medium mb-1">Konsultasi Gratis</h3>
@@ -232,10 +258,10 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="pu.jpeg" alt="About" class="rounded-2xl shadow-2xl">
-                    <div class="absolute -bottom-6 -left-6 bg-slate-800 border border-white/10 rounded-xl p-4 backdrop-blur-xl">
+                    <img src="pu.jpeg" alt="About" class="rounded-2xl shadow-2xl w-full object-cover h-[400px]">
+                    <div class="absolute -bottom-6 -left-6 bg-slate-800 border border-white/10 rounded-xl p-4 backdrop-blur-xl shadow-lg">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                                 <span class="iconify text-slate-900" data-icon="carbon:rocket"></span>
                             </div>
                             <div>
@@ -250,18 +276,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-white/5">
+    <footer class="py-12 px-6 border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-2">
-                    <span class="iconify text-cyan-400 text-xl" data-icon="carbon:idea"></span>
+                    <span class="iconify text-white text-xl" data-icon="carbon:idea"></span>
                     <span class="font-semibold">Han.net</span>
                 </div>
                 <div class="flex items-center gap-6 text-sm text-slate-400">
                     <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
                     <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
-                    <a href="#" class="hover:text-white transition-colors">Kontak 085839541378</a>                                               
-                    <a href="#" class="hover:text-white transition-colors">sosmed ryhan</a>
+                    <a href="#" class="hover:text-white transition-colors">Kontak</a>
                 </div>
                 <div class="text-sm text-slate-400">© 2025 Han.net All rights reserved.</div>
             </div>
@@ -295,9 +320,10 @@
                 </div>
                 <div class="flex justify-between mb-6">
                     <span class="text-slate-400">Total</span>
-                    <span id="cart-total" class="text-xl font-medium text-cyan-400">Rp 0</span>
+                    <span id="cart-total" class="text-xl font-medium text-white">Rp 0</span>
                 </div>
-                <button onclick="checkout()" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all">
+                <!-- Tombol Checkout di Sidebar -->
+                <button onclick="checkout()" class="w-full py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-slate-200 transition-all shadow-lg shadow-white/20">
                     Checkout Sekarang
                 </button>
             </div>
@@ -318,25 +344,25 @@
             <form id="checkout-form" class="space-y-4">
                 <div>
                     <label class="block text-sm text-slate-400 mb-2">Nama Lengkap</label>
-                    <input type="text" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="Masukkan nama lengkap">
+                    <input type="text" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-white focus:outline-none transition-colors" placeholder="Masukkan nama lengkap">
                 </div>
                 <div>
                     <label class="block text-sm text-slate-400 mb-2">Email</label>
-                    <input type="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="email@contoh.com">
+                    <input type="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-white focus:outline-none transition-colors" placeholder="email@contoh.com">
                 </div>
                 <div>
                     <label class="block text-sm text-slate-400 mb-2">No. WhatsApp</label>
-                    <input type="tel" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-cyan-500 focus:outline-none transition-colors" placeholder="08xxxxxxxxxx">
+                    <input type="tel" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-white focus:outline-none transition-colors" placeholder="08xxxxxxxxxx">
                 </div>
                 <div>
                     <label class="block text-sm text-slate-400 mb-2">Metode Pembayaran</label>
                     <div class="grid grid-cols-2 gap-3">
-                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-cyan-500 transition-colors">
-                            <input type="radio" name="payment" value="transfer" checked class="accent-cyan-500">
+                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-white transition-colors">
+                            <input type="radio" name="payment" value="transfer" checked class="accent-white">
                             <span class="text-sm">Transfer Bank</span>
                         </label>
-                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-cyan-500 transition-colors">
-                            <input type="radio" name="payment" value="ewallet" class="accent-cyan-500">
+                        <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-white transition-colors">
+                            <input type="radio" name="payment" value="ewallet" class="accent-white">
                             <span class="text-sm">E-Wallet</span>
                         </label>
                     </div>
@@ -345,9 +371,9 @@
                 <div class="border-t border-white/10 pt-4 mt-4">
                     <div class="flex justify-between mb-4">
                         <span class="text-slate-400">Total Pembayaran</span>
-                        <span id="checkout-total" class="text-xl font-medium text-cyan-400">Rp 0</span>
+                        <span id="checkout-total" class="text-xl font-medium text-white">Rp 0</span>
                     </div>
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-medium rounded-xl hover:from-cyan-400 hover:to-cyan-500 transition-all">
+                    <button type="submit" class="w-full py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-slate-200 transition-all shadow-lg shadow-white/20">
                         Bayar Sekarang
                     </button>
                 </div>
@@ -380,7 +406,9 @@
                 price: 750000,
                 image: "p.jpeg",
                 description: "Konsep kedai kopi dengan biji kopi lokal premium dan teknik brewing manual.",
-                tags: ["F&B", "Trend", "Local"]
+                tags: ["F&B", "Trend", "Local"],
+                rating: 4.9,
+                sold: 45
             },
             {
                 id: 2,
@@ -389,7 +417,9 @@
                 price: 2500000,
                 image: "lu.jpeg",
                 description: "Platform digital untuk layanan laundry dengan pickup & delivery.",
-                tags: ["Tech", "Startup", "App"]
+                tags: ["Tech", "Startup", "App"],
+                rating: 4.8,
+                sold: 20
             },
             {
                 id: 3,
@@ -398,7 +428,9 @@
                 price: 1250000,
                 image: "s.jpeg",
                 description: "Paket layanan fotografi pre-wedding dengan konsep unik dan lokasi outdoor.",
-                tags: ["Creative", "Wedding", "Photo"]
+                tags: ["Creative", "Wedding", "Photo"],
+                rating: 5.0,
+                sold: 15
             },
             {
                 id: 4,
@@ -407,7 +439,9 @@
                 price: 950000,
                 image: "in.jpeg",
                 description: "Layanan konsultasi dan desain interior secara online dengan 3D rendering.",
-                tags: ["Service", "Design", "Home"]
+                tags: ["Service", "Design", "Home"],
+                rating: 4.7,
+                sold: 30
             },
             {
                 id: 5,
@@ -416,7 +450,9 @@
                 price: 2500000,
                 image: "pak.jpeg",
                 description: "Blueprint bisnis online dengan supplier terpercaya dan strategi marketing.",
-                tags: ["Retail", "marketplace", "Online"]
+                tags: ["Retail", "marketplace", "Online"],
+                rating: 4.6,
+                sold: 60
             },
             {
                 id: 6,
@@ -425,10 +461,10 @@
                 price: 1500000,
                 image: "l.jpeg",
                 description: "Konsep ghost kitchen khusus makanan sehat dengan delivery-only model.",
-                tags: ["F&B", "Health", "Delivery"]
+                tags: ["F&B", "Health", "Delivery"],
+                rating: 4.8,
+                sold: 25
             },
-            
-            
         ];
 
         // Cart State
@@ -447,7 +483,7 @@
         function renderIdeas(ideas) {
             const grid = document.getElementById('ideas-grid');
             grid.innerHTML = ideas.map(idea => `
-                <div class="bg-slate-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 transition-all group" data-category="${idea.category}">
+                <div class="bg-slate-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-white/30 hover:shadow-lg hover:shadow-white/5 transition-all group backdrop-blur-sm" data-category="${idea.category}">
                     <div class="relative overflow-hidden">
                         <img src="${idea.image}" alt="${idea.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 flex gap-2">
@@ -455,7 +491,7 @@
                                 <span class="px-2 py-1 bg-black/50 backdrop-blur-sm text-xs rounded-full">${tag}</span>
                             `).join('')}
                         </div>
-                        <div class="absolute top-3 right-3 px-2 py-1 bg-cyan-500 text-slate-900 text-xs font-medium rounded-full">
+                        <div class="absolute top-3 right-3 px-2 py-1 bg-white text-slate-900 text-xs font-semibold rounded-full capitalize">
                             ${idea.category}
                         </div>
                     </div>
@@ -470,8 +506,8 @@
                             </div>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-xl font-medium text-cyan-400">${formatCurrency(idea.price)}</span>
-                            <button onclick="addToCart(${idea.id})" class="px-4 py-2 bg-cyan-500 text-slate-900 text-sm font-medium rounded-lg hover:bg-cyan-400 transition-colors flex items-center gap-2">
+                            <span class="text-xl font-medium text-white">${formatCurrency(idea.price)}</span>
+                            <button onclick="addToCart(${idea.id})" class="px-4 py-2 bg-white text-slate-900 text-sm font-semibold rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2">
                                 <span class="iconify" data-icon="carbon:shopping-cart-plus"></span>
                                 Tambah
                             </button>
@@ -485,9 +521,9 @@
         function filterIdeas(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-cyan-500', 'text-slate-900');
+                btn.classList.remove('bg-white', 'text-slate-900');
                 if (btn.dataset.category === category) {
-                    btn.classList.add('bg-cyan-500', 'text-slate-900');
+                    btn.classList.add('bg-white', 'text-slate-900');
                 }
             });
 
@@ -512,7 +548,7 @@
             
             // Show notification
             const notification = document.createElement('div');
-            notification.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 flex items-center gap-2';
+            notification.className = 'fixed bottom-6 right-6 bg-white text-slate-900 px-6 py-3 rounded-xl shadow-lg z-50 flex items-center gap-2 font-medium';
             notification.innerHTML = `
                 <span class="iconify" data-icon="carbon:checkmark-filled"></span>
                 Ditambahkan ke keranjang
@@ -552,7 +588,7 @@
                         <div class="flex-1">
                             <h4 class="font-medium mb-1">${item.title}</h4>
                             <p class="text-sm text-slate-400 mb-2">${item.category}</p>
-                            <span class="text-cyan-400 font-medium">${formatCurrency(item.price)}</span>
+                            <span class="text-white font-medium">${formatCurrency(item.price)}</span>
                         </div>
                         <button onclick="removeFromCart(${item.id})" class="p-2 hover:bg-white/10 rounded-lg h-fit transition-colors text-slate-400 hover:text-red-400">
                             <span class="iconify" data-icon="carbon:trash-can"></span>
@@ -611,7 +647,4 @@
         renderIdeas(businessIdeas);
     </script>
 </body>
-
 </html>
-
-
