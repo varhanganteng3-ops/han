@@ -48,24 +48,26 @@
     </script>
 </head>
 <body class="bg-slate-950 text-white">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2">
-                <span class="iconify text-cyan-400 text-2xl" data-icon="carbon:idea"></span>
-                <span class="font-semibold text-lg">Han.net</span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#ideas" class="text-sm text-slate-400 hover:text-white transition-colors">Ide Bisnis</a>
-                <a href="#categories" class="text-sm text-slate-400 hover:text-white transition-colors">Kategori</a>
-                <a href="#about" class="text-sm text-slate-400 hover:text-white transition-colors">Tentang</a>
-            </div>
-            <button onclick="openCart()" class="relative p-2 hover:bg-white/10 rounded-lg transition-colors">
-                <span class="iconify text-xl" data-icon="carbon:shopping-cart"></span>
-                <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-cyan-500 text-xs rounded-full flex items-center justify-center hidden">0</span>
-            </button>
-        </div>
-    </nav>
+    <!-- Hero Section (UPDATED: Putih) -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
+        
+        <!-- 1. Base Background -->
+        <div class="absolute inset-0 bg-slate-950 z-0"></div>
+        
+        <!-- 2. Animated Mesh Gradient Background (Warna Putih/Abu Monokrom) -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <!-- Blob 1: Putih Pekat -->
+            <div class="absolute top-0 -left-40 w-[600px] h-[600px] bg-white/30 rounded-full filter blur-[100px] animate-blob"></div>
+            <!-- Blob 2: Abu-abu Terang -->
+            <div class="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-slate-300/20 rounded-full filter blur-[90px] animate-blob animation-delay-2000"></div>
+            <!-- Blob 3: Putih Transparan -->
+            <div class="absolute -bottom-40 left-1/3 w-[500px] h-[500px] bg-white/10 rounded-full filter blur-[100px] animate-blob animation-delay-4000"></div>
+            
+            <!-- Grid Pattern Overlay -->
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+            
+            <!-- Radial Gradient Vignette -->
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0f172a_70%)]"></div>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
@@ -611,4 +613,5 @@
 </body>
 
 </html>
+
 
